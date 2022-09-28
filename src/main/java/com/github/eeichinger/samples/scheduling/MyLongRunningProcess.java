@@ -31,7 +31,7 @@ class MyLongRunningProcess implements Runnable {
 
         try {
             for (int i = 0; i < 50; i++) {
-                count.set(i);
+                count.set(i); // report progress
                 Thread.sleep(50); // simulate work
             }
         } finally {
