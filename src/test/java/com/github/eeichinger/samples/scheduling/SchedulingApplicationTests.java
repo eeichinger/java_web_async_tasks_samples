@@ -57,7 +57,7 @@ class SchedulingApplicationTests {
                                 .with(user("user").password("password"))
                 )
                 .andExpect(status().is2xxSuccessful());
-        log.info("received response success");
+        log.info("received response success - you should see the second request being reported in the logs as 'skipped'");
         log.info("waiting for long task to complete");
         Thread.sleep(1000);
         log.info("finished waiting - did it complete?");
