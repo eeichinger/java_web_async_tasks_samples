@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.TaskScheduler;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,6 +33,8 @@ public class MyController {
         log.info("scheduling async process");
         taskScheduler.schedule(job, new Date(System.currentTimeMillis()));
         // request will complete, job will execute on a separate thread
+        // simulate clearing Authentication at end of request
+        SecurityContextHolder.getContext().setAuthentication(null);
     }
 
     @GetMapping("/status")
